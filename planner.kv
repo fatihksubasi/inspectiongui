@@ -1,0 +1,155 @@
+<Mapping>:
+	orientation: 'vertical'
+	padding: 5
+	spacing: 10
+	BoxLayout:
+		padding: 0
+		Label:
+			text: 'Start Mapping Mode'
+			font_name: 'Roboto-Regular'
+		Switch:
+			id: mapping_mode_switch
+			on_active: root.mapping_mode(self.active)
+	BoxLayout:
+		padding: 0
+		Label:
+			text: 'Match locations to images'
+			font_name: 'Roboto-Regular'
+		Switch:
+			active: mapping_mode_switch.active
+			on_active: root.match_image_to_pose(self.active)
+<Revisiting>:
+	orientation: 'vertical'
+	padding: 5
+	spacing: 10
+	Button:
+		text: 'Predict images with cracks'
+		font_name: 'Roboto-Regular'
+		size_hint_x: None
+		size_hint_y: None
+		width: 225
+		#height: txt_input.height + 10
+		center: (root.center_x, self.center_y)
+		on_release: root.predict_cracks() 
+	#TextInput:
+	#	id: txt_input
+	#	on_text: selected_image.value = "{:.0f}".format(eval(self.text))
+	#	multiline: False
+	#	height: self.font_size + 15
+	#	width: 225
+	#	hint_text: 'Slide or type to select an image' 
+	#	input_filter: 'int'
+	#	size_hint_y: None
+	#	size_hint_x: None
+	#	center: (root.center_x, self.center_y)
+	Slider:
+		id: selected_image
+		size_hint: (1, 0.02)
+		min: 1
+		max: root.imagenum
+		step: 1
+		cursor_height: '22sp'
+	BoxLayout:
+		padding: 0
+		spacing: 0
+		size_hint: (1, 0.1)
+		Label:
+			text: str(int(selected_image.value))+'/'+str(root.imagenum)
+			font_size: '14sp'
+			font_name: 'Roboto-Regular'
+	Image:
+		source: root.img_path + str(int(selected_image.value)) + '.png'
+	BoxLayout:
+		size_hint: (0.6, 0.2)
+		spacing: 10
+		padding: 5
+		pos_hint: {'x': 0.2, 'y': 0.5}
+		Button:
+			text: 'Start mission'
+			font_name: 'Roboto-Regular'
+			background_color: (0, 0.7, 0.9, 0.8)
+			on_release: root.select_goal(int(selected_image.value))
+		Button:
+			text: 'Stop mission'
+			font_name: 'Roboto-Regular'
+			background_color: (1, 0, 0, 0.5)
+			on_release: root.stop_robot()	
+<MainMenu>:
+	id: tab
+	do_default_tab: True
+	default_tab_text: 'Home'
+	default_tab_content: instruction
+	TabbedPanelItem:
+		text: 'Mapping'
+		font_name: 'Roboto-Regular'
+		Mapping:
+			id: mapping
+			canvas.before:
+				Color:
+					rgba: (0.15, 0.15, 0.15, 1)
+				Rectangle:
+					pos: self.pos			
+					size: self.size
+	TabbedPanelItem:
+		text: 'Revisiting'
+		font_name: 'Roboto-Regular'	
+		Revisiting:
+			id: revisiting
+			canvas.before: 
+				Color: 
+					rgba: (0.15, 0.15, 0.15, 1)
+				Rectangle:
+					pos: self.pos
+					size: self.size
+	BoxLayout:
+		id: instruction
+		canvas.before: 
+			Color: 
+				rgba: (0.15, 0.15, 0.15, 1)
+			Rectangle:
+				pos: self.pos
+				size: self.size
+		RstDocument:
+			text: 'Placeholder for instructions'
+			font_name: 'Roboto-Regular'
+			size_hint: (1, 1)
+		BoxLayout:
+			orientation: 'vertical'
+			BoxLayout:
+				Label:
+					text: 'Launch the vehicle'
+					font_name: 'Roboto-Regular'
+				Switch:				
+					on_active: root.launch_ros(self.active)
+			BoxLayout:
+				Label:
+					text: 'Live video stream'
+					font_name: 'Roboto-Regular'
+				Switch:
+					on_active: root.live_stream(self.active)
+			BoxLayout:
+				orientation: 'vertical'
+				spacing: 10
+				ToggleButton:
+					text: 'Take-off'
+					font_name: 'Roboto-Regular'
+					group: 'flight'
+					on_release: root.takeoff()
+				ToggleButton:
+					text: 'Land'
+					font_name: 'Roboto-Regular'
+					group: 'flight'
+					on_release: root.landing()
+				 
+<PlannerInterface>:
+	orientation: 'vertical'
+	padding: 0
+	MainMenu:
+		id: main_menu
+	BoxLayout:
+		size_hint: (1, 0.05)
+		Label:
+			text: '[b]Aerial Inspection Planner[/b]  [i]by Fatih Kucuksubasi | fatihksubasi@gmail.com[/i]'
+			font_name: 'Roboto'
+			font_size: '14sp'
+			markup: True		
