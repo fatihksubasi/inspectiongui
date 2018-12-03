@@ -26,6 +26,9 @@ cd /path/to/inspectiongui
 ```
 docker build -t inspectiongui .
 ```
+```
+chmod +x run_docker.sh
+```
 
 ## Run
 ### Conda
