@@ -46,7 +46,6 @@ The container opens the GUI in a new browser tab.
 1. Open Revisiting tab
 2. You can see all images using the slider before detecting the images containing crack.
 3. Press 'Predict images with cracks' button to feed the images into CNN model.
-4. Close and re-run the GUI to view the images with cracks.
 
 ## Notes
 - Please do not remove file named 'image_pose_matching.txt' inside images folder. These are pose (position and orientation) information of the UAV at the time when corresponding image is taken.
