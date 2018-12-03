@@ -31,6 +31,7 @@
 		#height: txt_input.height + 10
 		center: (root.center_x, self.center_y)
 		on_release: root.predict_cracks() 
+		on_release: root.img_path += 'predicted/' 
 	#TextInput:
 	#	id: txt_input
 	#	on_text: selected_image.value = "{:.0f}".format(eval(self.text))

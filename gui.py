@@ -107,9 +107,9 @@ class Revisiting(BoxLayout):
 
     def predict_cracks(self):
         try:
+            global directory, img_path, matchings
             from crack_detection import test
             test(model_prefix='brick')
-            directory, img_path, matchings = image_locater()
         except:
             pass
 
