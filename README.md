@@ -1,3 +1,10 @@
+# InspectionGUI - - A Minimal Graphical User Interface for Structural Crack Detection from Images
+
+InspectionGUI is a minimal interface for structural crack detection from images using deep learning written in Python. Transfer learning is utilized in order to fine-tune InceptionV3 using Keras with Tensorflow backend. 
+
+## Related Publications
+Kucuksubasi, F., & Sorguc, A. G. (2018). Transfer Learning-Based Crack Detection by Autonomous UAVs. In 35th International Symposium on Automation and Robotics in Construction (pp. 584–591). Berlin. https://doi.org/10.22260/ISARC2018/0081
+
 
 ## Prerequisites
 
@@ -5,9 +12,10 @@
 - Tested under Ubuntu 16.04
 
 ## Build
+You can easily install inspectionGUI using conda or docker.
 ### Clone
 ```
-git clone https://gitlab.com/fatihksubasi/inspectiongui.git
+git clone https://github.com/fatihksubasi/inspectiongui
 ```
 ### Conda
 ```
@@ -42,14 +50,15 @@ chmod +x run_docker.sh
 The container opens the GUI in a new browser tab.
 
 ## Usage
-###  Note: Most of the features is deactive except crack detection 
-1. Open Revisiting tab
+1. Put your '.png' formatted images into the './images' directory 
 2. You can see all images using the slider before detecting the images containing crack.
-3. Press 'Predict images with cracks' button to feed the images into CNN model.
+3. Press 'Detect Cracks' button to feed the images into the CNN model.
+4. Images with detected cracks will appear as soon as testing ends.
 
 ## Notes
-- Please do not remove file named 'image_pose_matching.txt' inside images folder. These are pose (position and orientation) information of the UAV at the time when corresponding image is taken.
+
 - You can rerun crack detection function after deleting images in /images/predicted
+- Tensorflow version with GPU support gives better performance in detection.
 
 ## Directory Structure
     .
@@ -63,9 +72,7 @@ The container opens the GUI in a new browser tab.
     ├── gui.py                # main GUI wrapper 
     ├── images                 
         ├── predicted
-            ├── image_pose_matchings.txt
             ├── ...
-        ├── image_pose_matchings.txt
         ├── 1.png
         ├── ...       
     ├── planner.kv            # kv language for GUI   
