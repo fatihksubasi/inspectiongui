@@ -3,6 +3,7 @@ channels:
   - defaults
   - conda-forge
 dependencies:
-  - python=2.7
-  - keras
-  - kivy
+  - python==2.7
+  - keras==2.2.4
+  - kivy==1.10.1
+  - pillow

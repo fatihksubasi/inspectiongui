@@ -1,16 +1,15 @@
 #!/usr/bin/env python
 
 import os
-import kivy
+from PIL import Image
+from glob import glob
 from kivy.app import App
 from kivy.uix.boxlayout import BoxLayout
 from kivy.base import EventLoop
+from kivy.uix.popup import Popup
 
-global directory, img_path, matchings
-
-# Parsing images with their corresponding poses
-def image_locater():
-    directory = os.path.dirname(os.path.realpath(__file__))
+# Parsing images
+def image_locater(directory):
     img_path = directory + '/images/'
 
     try:
@@ -21,11 +20,11 @@ def image_locater():
 
     return directory, img_path
 
-directory, img_path = image_locater()
+directory, img_path = image_locater(
+    os.path.dirname(os.path.realpath(__file__)))
 
 class GUI(BoxLayout):
     img_path = img_path
-    imagenum = len(os.listdir(img_path))
 
     def __init__(self, *args, **kwargs):
         super(GUI, self).__init__(*args, **kwargs)
@@ -35,6 +34,17 @@ class GUI(BoxLayout):
             global directory, img_path
             from crack_detection import test
             test(model_prefix='brick')
+        except:
+            pass
+
+    def convert_imgs(self, path):
+        imgs = glob(path+'/*')
+        j = 1
+        try:
+            for i in imgs:
+                img =  Image.open(i)
+                img.save(img_path + str(j) + '.png')
+                j += 1
         except:
             pass
 

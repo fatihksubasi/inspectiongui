@@ -1,4 +1,4 @@
-
+#:import os os
 <GUI>:
 	orientation: 'vertical'
 	padding: 10
@@ -10,24 +10,39 @@
 			font_name: 'Roboto'
 			font_size: '24sp'
 			markup: True
-	Slider:
-		id: selected_image
-		size_hint: (1, 0.02)
-		min: 1
-		max: root.imagenum
-		step: 1
-		cursor_height: '22sp'
+	BoxLayout:
+		size_hint: (1, 0.6)
+		FileChooserIconView:
+			id: filechooser
+			show_hidden: False
+		BoxLayout:
+			size_hint: (0.15, 1)
+			orientation: 'vertical'
+			Button:
+				text: 'Load Images'
+				on_release: root.convert_imgs(filechooser.path) 
+			Button:
+				text: 'Show Images'
+				on_release: selected_image.max = len(os.listdir(root.img_path))
+	BoxLayout:
+		Image:
+			id: images
+			source: root.img_path + str(int(selected_image.value)) + '.png'
 	BoxLayout:
 		padding: 0
 		spacing: 0
 		size_hint: (1, 0.1)
 		Label:
-			text: str(int(selected_image.value))+'/'+str(root.imagenum)
+			text: str(int(selected_image.value))+'/'+str(selected_image.max)
 			font_size: '18sp'
 			font_name: 'Roboto-Regular'
-	BoxLayout:
-		Image:
-			source: root.img_path + str(int(selected_image.value)) + '.png'
+	Slider:
+		id: selected_image
+		size_hint: (1, 0.02)
+		min: 1
+		max: len(os.listdir(root.img_path))
+		step: 1
+		cursor_height: '22sp'
 	BoxLayout:
 		Button:
 			text: 'Detect Cracks'
@@ -35,10 +50,9 @@
 			size_hint_x: None
 			size_hint_y: None
 			width: 225
-			#height: txt_input.height + 10
 			center: (root.center_x, self.center_y)
 			on_release: root.predict_cracks() 
-			on_release: root.img_path += 'predicted/' 
+			on_release: root.img_path += 'predicted/'
 	BoxLayout:
 		size_hint: (1, 0.05)
 		Label:

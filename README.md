@@ -50,10 +50,12 @@ chmod +x run_docker.sh
 The container opens the GUI in a new browser tab.
 
 ## Usage
-1. Put your '.png' formatted images into the './images' directory 
-2. You can see all images using the slider before detecting the images containing crack.
-3. Press 'Detect Cracks' button to feed the images into the CNN model.
-4. Images with detected cracks will appear as soon as testing ends.
+1. Select any image in your image folder
+2. Press 'Load Images'
+3. Press 'Show Images'
+4. You can see all images using the slider before detecting the images containing crack.
+5. Press 'Detect Cracks' button to feed the images into the CNN model.
+6. Images with detected cracks will appear as soon as testing ends.
 
 ## Notes
 
