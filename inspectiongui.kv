@@ -24,6 +24,9 @@
 			Button:
 				text: 'Show Images'
 				on_release: selected_image.max = len(os.listdir(root.img_path))
+			Button:
+				text: 'Clear & Refresh'
+				on_release: root.clear_imgs()
 	BoxLayout:
 		Image:
 			id: images

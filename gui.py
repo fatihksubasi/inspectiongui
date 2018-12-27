@@ -6,7 +6,6 @@ from glob import glob
 from kivy.app import App
 from kivy.uix.boxlayout import BoxLayout
 from kivy.base import EventLoop
-from kivy.uix.popup import Popup
 
 # Parsing images
 def image_locater(directory):
@@ -47,6 +46,16 @@ class GUI(BoxLayout):
                 j += 1
         except:
             pass
+
+    def clear_imgs(self):
+        try:
+            imgs = [f for f in os.listdir(img_path + '/predicted') if f.endswith(".png")]
+            for img in imgs:
+                os.remove(os.path.join(img_path + '/predicted', img))
+        except:
+            imgs = [f for f in os.listdir(img_path) if f.endswith(".png")]
+            for img in imgs:
+                os.remove(os.path.join(img_path, img))
 
 # Main of GUI
 class InspectionguiApp(App):
