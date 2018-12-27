@@ -56,6 +56,7 @@ The container opens the GUI in a new browser tab.
 4. You can see all images using the slider before detecting the images containing crack.
 5. Press 'Detect Cracks' button to feed the images into the CNN model.
 6. Images with detected cracks will appear as soon as testing ends.
+7. Press 'Clear & Refresh' to remove detected crack images  
 
 ## Notes
 
