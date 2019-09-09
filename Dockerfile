@@ -26,8 +26,8 @@ RUN  pip install --upgrade --no-cache-dir pillow \
   && pip install --upgrade --no-cache-dir docutils \
   && pip install --upgrade --no-cache-dir Cython==0.28
 
-RUN cd && git clone git://github.com/kivy/kivy.git && cd kivy && make && make install
-
+#RUN cd && git clone https://github.com/kivy/kivy && cd kivy && make && make install
+RUN pip install kivy
 COPY at_runtime.sh /tmp/
 RUN chmod +x  /tmp/*.sh
 
