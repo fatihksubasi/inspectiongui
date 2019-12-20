@@ -1,4 +1,4 @@
-# InspectionGUI - - A Minimal Graphical User Interface for Structural Crack Detection from Images
+# InspectionGUI - - A Minimal Graphical User Interface for Concrete Crack Detection from Images
 
 InspectionGUI is a minimal interface for structural crack detection from images using deep learning written in Python. Transfer learning is utilized in order to fine-tune InceptionV3 using Keras with Tensorflow backend. 
 
@@ -25,14 +25,19 @@ cd /path/to/inspectiongui
 conda env create -f environment.yml
 ```
 ```
-chmod +x run.sh
+chmod +x run_conda.sh
 ```
 ### Docker
+#### Pull from Docker Hub
+```
+docker pull fatihksubasi/inspectiongui
+```
+#### Build from Source
 ```
 cd /path/to/inspectiongui
 ```
 ```
-docker build -t inspectiongui .
+docker build -t fatihksubasi/inspectiongui .
 ```
 ```
 chmod +x run_docker.sh
@@ -41,7 +46,7 @@ chmod +x run_docker.sh
 ## Run
 ### Conda
 ```
-./run.sh
+./run_conda.sh
 ```
 ### Docker
 ```
@@ -66,9 +71,6 @@ The container opens the GUI in a new browser tab.
 ## Directory Structure
     .
     ├── at_runtime.sh         # shell script to handle resolution and user forwarding
-    ├── brick.h5              # CNN architecture 
-    ├── brick.json            # CNN weights 
-    ├── brick-labels.json     # CNN class labels
     ├── crack_detection.py    # crack detection functions 
     ├── Dockerfile            # docker build file
     ├── environment.yml       # conda environment config 
@@ -78,7 +80,11 @@ The container opens the GUI in a new browser tab.
             ├── ...
         ├── 1.png
         ├── ...       
-    ├── planner.kv            # kv language for GUI   
-    ├── run.sh                # shell script to run the GUI
+    ├── inspectiongui.kv      # kv language for GUI   
+    ├── models
+        ├──brick.h5           # CNN architecture 
+        ├── brick.json        # CNN weights 
+        ├── brick-labels.json # CNN class labels
+    ├── run_conda.sh                # shell script to run the GUI
     ├── run_docker.sh         # shell script to run GUI in Docker container
     └── README.md

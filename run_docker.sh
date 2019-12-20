@@ -1,6 +1,6 @@
 #!/bin/bash
 
-CONTAINER=inspectiongui
+CONTAINER=fatihksubasi/inspectiongui
 
 docker run --rm -d -P -e NEWUSER=$(id -un) -e NEWUID=501 -e NEWGID=20	        \
         -e RESOLUTION="800x600"						        \

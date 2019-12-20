@@ -6,6 +6,7 @@ from glob import glob
 from kivy.app import App
 from kivy.uix.boxlayout import BoxLayout
 from kivy.base import EventLoop
+from crackDetection import CrackDetection
 
 # Parsing images
 def image_locater(directory):
@@ -31,8 +32,8 @@ class GUI(BoxLayout):
     def predict_cracks(self):
         try:
             global directory, img_path
-            from crack_detection import test
-            test(model_prefix='brick')
+            cd = CrackDetection(model_prefix='brick')
+            cd.test()
         except:
             pass
 
