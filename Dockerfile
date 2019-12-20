@@ -3,7 +3,6 @@ FROM thewtex/opengl
 RUN apt-get update \
   && apt-get install -y --no-install-recommends \
     build-essential \
-    git \
     python-pip \
     mesa-common-dev \
     software-properties-common \
@@ -12,7 +11,6 @@ RUN apt-get update \
     python-opengl \
     python-enchant \
     python-dev \
-    build-essential \
     libgl1-mesa-dev \
     libgles2-mesa-dev \
     zlib1g-dev \
