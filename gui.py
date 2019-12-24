@@ -6,7 +6,7 @@ from glob import glob
 from kivy.app import App
 from kivy.uix.boxlayout import BoxLayout
 from kivy.base import EventLoop
-from crackDetection import CrackDetection
+from crackdetection import CrackDetection
 
 # Parsing images
 def image_locater(directory):
