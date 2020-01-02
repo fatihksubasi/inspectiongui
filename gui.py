@@ -16,7 +16,7 @@ def image_locater(directory):
         if os.listdir(directory + '/images/predicted')[0].endswith('.png'):
             img_path = directory + '/images/predicted/'
     except:
-        pass
+        print "ERROR occured regarding image directory structure"
 
     return directory, img_path
 
@@ -35,7 +35,7 @@ class GUI(BoxLayout):
             cd = CrackDetection(model_prefix='brick')
             cd.test()
         except:
-            pass
+            print "ERROR occured during loading JSON model"
 
     def convert_imgs(self, path):
         imgs = glob(path+'/*')
@@ -46,7 +46,7 @@ class GUI(BoxLayout):
                 img.save(img_path + str(j) + '.png')
                 j += 1
         except:
-            pass
+            print "ERROR occured during converting images to PNG"
 
     def clear_imgs(self):
         try:
